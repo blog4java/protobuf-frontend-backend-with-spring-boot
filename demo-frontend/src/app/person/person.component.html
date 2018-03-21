@@ -1,0 +1,20 @@
+<div>
+  <button (click)="addPerson()">Add Person</button>
+</div>
+<hr>
+<div>
+  <table border="1" cellpadding="1" cellspacing="0">
+    <thead>
+    <tr>
+      <th>Person Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngIf="names">
+      NO RECORDS FOUND.
+    </tr>
+    <tr *ngFor="let name of names">
+      {{name}}
+    </tr>
+  </table>
+</div>
