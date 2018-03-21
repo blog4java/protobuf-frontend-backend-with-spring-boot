@@ -12,7 +12,9 @@ export class PersonService {
   }
 
   addPerson(person: IPersonRequest) {
-    return this.http.post(this.personUri, PersonRequest.fromObject(person));
+    console.log("request", person);
+    let body = PersonRequest.encode(person).finish();
+    return this.http.post(this.personUri, body.buffer);
   }
 
   findAllPersonNames(): Observable<string[]> {

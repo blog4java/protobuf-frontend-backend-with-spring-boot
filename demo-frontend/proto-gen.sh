@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 PROTO_DIR=../protobufs/src/main/proto
 OUTPUT_DIR=${PWD}/src/app/protobufs
+rm -rf ${OUTPUT_DIR}
 mkdir ${OUTPUT_DIR}
 for i in 'demo_service'
 	    do
