@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {Observable} from 'rxjs/Observable';
 import {IPersonRequest, PersonRequest} from "../protobufs";
 
@@ -12,8 +12,6 @@ export class PersonService {
   }
 
   addPerson(person: IPersonRequest) {
-    console.log("request", person);
-    const headers = new HttpHeaders({'Accept': 'application/x-protobuf'});
     let body = PersonRequest.encode(person).finish();
     return this.http.post(this.personUri, body);
   }
