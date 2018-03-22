@@ -3,7 +3,6 @@ package io.developerbhuwan.backend.demo;
 import io.developerbuwan.demo.model.DemoProtos.PersonRequest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedHashMap;
@@ -31,7 +30,7 @@ public class DemoBackend {
 
         private Map<String, PersonRequest> persons = new LinkedHashMap<>();
 
-        @PostMapping(consumes = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+        @PostMapping(consumes = "application/x-protobuf")
         public void addPerson(@RequestBody PersonRequest request) {
             persons.put(UUID.randomUUID().toString(), request);
         }
