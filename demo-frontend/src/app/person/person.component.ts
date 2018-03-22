@@ -34,7 +34,8 @@ export class PersonComponent implements OnInit {
   }
 
   private person(): IPersonRequest {
-    let number = ++this.count;
+    let number = this.count + 1;
+    this.count = number;
     return {
       firstName: "BHUWAN" + number,
       lastName: "PRASAD" + number
