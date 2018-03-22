@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PersonService} from "./person.service";
-import {IPersonRequest} from "../protobufs/demo_service";
+import {IPersonRequest} from "../protobufs";
 
 @Component({
   selector: 'app-person',
