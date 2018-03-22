@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from 'rxjs/Observable';
-import {IPersonRequest, PersonRequest} from "../protobufs/demo_service";
+import {IPersonRequest, PersonRequest} from "../protobufs";
 
 @Injectable()
 export class PersonService {

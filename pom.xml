@@ -17,6 +17,7 @@
     <modules>
         <module>protobufs</module>
         <module>demo-backend</module>
+        <module>demo-frontend</module>
     </modules>
 
     <packaging>pom</packaging>

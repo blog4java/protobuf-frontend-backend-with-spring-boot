@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <groupId>io.developerbhuwan</groupId>
+    <artifactId>protobuf-frontend-backend-with-spring-boot</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>demo-frontend</artifactId>
+
+  <properties>
+    <protobuf>3.5.1</protobuf>
+    <proto.src>${project.parent.basedir}/protobufs/src/main/proto</proto.src>
+    <generated.src>${project.basedir}/src/app/protobufs</generated.src>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java</artifactId>
+      <version>${protobuf}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!--<plugin>-->
+        <!--<groupId>org.xolstice.maven.plugins</groupId>-->
+        <!--<artifactId>protobuf-maven-plugin</artifactId>-->
+        <!--<version>0.5.1</version>-->
+        <!--<configuration>-->
+          <!--<protocExecutable>/usr/local/bin/protoc</protocExecutable>-->
+        <!--</configuration>-->
+        <!--<executions>-->
+          <!--<execution>-->
+            <!--<id>protobuf-compile-js</id>-->
+            <!--<goals>-->
+              <!--<goal>compile-custom</goal>-->
+            <!--</goals>-->
+            <!--&lt;!&ndash;<phase>generate-sources</phase>&ndash;&gt;-->
+            <!--<configuration>-->
+              <!--<pluginId>js</pluginId>-->
+              <!--<protoSourceRoot>${proto.src}</protoSourceRoot>-->
+              <!--<outputBaseDirectory>${generated.src}</outputBaseDirectory>-->
+            <!--</configuration>-->
+          <!--</execution>-->
+        <!--</executions>-->
+      <!--</plugin>-->
+
+      <plugin>
+        <groupId>com.github.eirslett</groupId>
+        <artifactId>frontend-maven-plugin</artifactId>
+        <version>1.6</version>
+        <executions>
+          <execution>
+            <id>install node and npm</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>install-node-and-npm</goal>
+            </goals>
+            <configuration>
+              <nodeVersion>v8.9.4</nodeVersion>
+              <npmVersion>5.6.0</npmVersion>
+            </configuration>
+          </execution>
+          <execution>
+            <id>frontend-build</id>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+            <phase>prepare-package</phase>
+            <configuration>
+              <arguments>build</arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
