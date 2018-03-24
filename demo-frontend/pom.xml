@@ -27,28 +27,28 @@
 
   <build>
     <plugins>
-      <!--<plugin>-->
-        <!--<groupId>org.xolstice.maven.plugins</groupId>-->
-        <!--<artifactId>protobuf-maven-plugin</artifactId>-->
-        <!--<version>0.5.1</version>-->
-        <!--<configuration>-->
-          <!--<protocExecutable>/usr/local/bin/protoc</protocExecutable>-->
-        <!--</configuration>-->
-        <!--<executions>-->
-          <!--<execution>-->
-            <!--<id>protobuf-compile-js</id>-->
-            <!--<goals>-->
-              <!--<goal>compile-custom</goal>-->
-            <!--</goals>-->
-            <!--&lt;!&ndash;<phase>generate-sources</phase>&ndash;&gt;-->
-            <!--<configuration>-->
-              <!--<pluginId>js</pluginId>-->
-              <!--<protoSourceRoot>${proto.src}</protoSourceRoot>-->
-              <!--<outputBaseDirectory>${generated.src}</outputBaseDirectory>-->
-            <!--</configuration>-->
-          <!--</execution>-->
-        <!--</executions>-->
-      <!--</plugin>-->
+      <plugin>
+        <groupId>org.xolstice.maven.plugins</groupId>
+        <artifactId>protobuf-maven-plugin</artifactId>
+        <version>0.5.1</version>
+        <configuration>
+          <protocExecutable>/usr/local/bin/protoc</protocExecutable>
+        </configuration>
+        <executions>
+          <execution>
+            <id>protobuf-compile-js</id>
+            <goals>
+              <goal>compile-custom</goal>
+            </goals>
+            <phase>generate-sources</phase>
+            <configuration>
+              <pluginId>js</pluginId>
+              <protoSourceRoot>${proto.src}</protoSourceRoot>
+              <outputBaseDirectory>${generated.src}</outputBaseDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
 
       <plugin>
         <groupId>com.github.eirslett</groupId>
