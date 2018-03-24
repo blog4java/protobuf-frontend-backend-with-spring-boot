@@ -19,20 +19,28 @@ import static java.util.stream.Collectors.toList;
 @EnableServiceEndpoints
 public class DemoBackend {
 
+    private static final String APPLICATION_X_PROTOBUF_VALUE = "application/x-protobuf";
+
+
     public static void main(String[] args) {
         SpringApplication.run(DemoBackend.class, args);
     }
 
 
     @RestController
-    @RequestMapping("/api/persons")
+    @RequestMapping(
+            path = "/api/persons",
+            produces = APPLICATION_X_PROTOBUF_VALUE,
+            consumes = APPLICATION_X_PROTOBUF_VALUE
+    )
     static class RestDemoEndPoints {
 
         private Map<String, PersonRequest> persons = new LinkedHashMap<>();
 
-        @PostMapping(consumes = "application/x-protobuf")
-        public void addPerson(@RequestBody PersonRequest request) {
+        @PostMapping
+        public String addPerson(@RequestBody PersonRequest request) {
             persons.put(UUID.randomUUID().toString(), request);
+            return "Ok";
         }
 
         @GetMapping
