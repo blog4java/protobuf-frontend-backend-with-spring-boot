@@ -28,8 +28,8 @@ export class PersonComponent implements OnInit {
   private loadPersons() {
     this.personService.findAllPersonNames()
       .subscribe(value => {
-        console.log('persons ', value);
-        this.names = People.create(value).person
+        this.names = People.decode(new Uint8Array(value)).person;
+        console.log("names", this.names);
       });
   }
 

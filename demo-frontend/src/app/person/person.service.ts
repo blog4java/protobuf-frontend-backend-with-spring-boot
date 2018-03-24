@@ -17,7 +17,7 @@ export class PersonService {
   }
 
   findAllPersonNames(): Observable<any> {
-    return this.http.get(this.personUri);
+    return this.http.get(this.personUri, {responseType: 'arraybuffer'});
   }
 
 }
