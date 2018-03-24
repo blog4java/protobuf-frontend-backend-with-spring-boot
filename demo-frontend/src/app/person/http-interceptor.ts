@@ -27,5 +27,4 @@ export class NgHttpInterceptor implements HttpInterceptor {
       return Observable.throw(response);
     });
   }
-
 }
