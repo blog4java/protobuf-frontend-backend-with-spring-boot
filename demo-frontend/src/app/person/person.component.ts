@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PersonService} from "./person.service";
-import {IPerson, People} from "../protobufs";
+import {IPerson, People, Person} from "../protobufs";
 
 @Component({
   selector: 'app-person',
@@ -10,7 +10,7 @@ import {IPerson, People} from "../protobufs";
 export class PersonComponent implements OnInit {
 
   names: IPerson[];
-  count: number;
+  count: number = 0;
 
   constructor(private personService: PersonService) {
   }
@@ -34,12 +34,12 @@ export class PersonComponent implements OnInit {
   }
 
   private person(): IPerson {
-    let number = this.count + 1;
-    this.count = number;
-    return {
-      firstName: "BHUWAN" + number,
-      lastName: "PRASAD" + number
-    };
+    this.count = this.count + 1;
+    return Person.create({
+      firstName: "BHUWAN" + this.count,
+      middleName: "PRASAD" + this.count,
+      lastName: "UPADHYAY" + this.count
+    });
   }
 
 }
