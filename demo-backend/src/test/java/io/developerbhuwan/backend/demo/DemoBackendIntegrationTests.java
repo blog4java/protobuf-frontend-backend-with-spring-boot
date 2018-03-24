@@ -13,22 +13,24 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.protobuf.ProtobufHttpMessageConverter;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Objects;
 
 import static java.net.URI.create;
+import static java.util.Collections.singletonList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
+import static org.springframework.http.converter.protobuf.ProtobufHttpMessageConverter.PROTOBUF;
 
 /**
  * @author Bhuwan Prasad Upadhyay
  */
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = DemoBackend.class, webEnvironment = WebEnvironment.RANDOM_PORT)
 class DemoBackendIntegrationTests {
 
     @Autowired
@@ -44,7 +46,7 @@ class DemoBackendIntegrationTests {
 
     @Test
     void person_Add_ThenReturnOkStatus() {
-        ResponseEntity<String> response = addPerson("BHUWAN");
+        ResponseEntity<Person> response = addPerson("BHUWAN");
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
@@ -60,19 +62,22 @@ class DemoBackendIntegrationTests {
 
     private ResponseEntity<People> findPersons() {
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(ProtobufHttpMessageConverter.PROTOBUF);
+        headers.setAccept(singletonList(PROTOBUF));
+        headers.setContentType(PROTOBUF);
         RequestEntity<Person> requestEntity =
                 new RequestEntity<>(headers, GET, create(baseUri + "/api/persons"));
         return rest.exchange(requestEntity, People.class);
     }
 
-    private ResponseEntity<String> addPerson(String firstName) {
+    private ResponseEntity<Person> addPerson(String firstName) {
         HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(PROTOBUF);
+        headers.setAccept(singletonList(PROTOBUF));
         Person request = Person
                 .newBuilder().setFirstName(firstName).setMiddleName("PRASAD").setLastName("UPADHYAY")
                 .build();
         RequestEntity<Person> requestEntity =
                 new RequestEntity<>(request, headers, POST, create(baseUri + "/api/persons"));
-        return rest.exchange(requestEntity, String.class);
+        return rest.exchange(requestEntity, Person.class);
     }
 }

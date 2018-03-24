@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "gen": "./proto-gen.sh",
-    "start": "npm run build && ng serve -proxy-config proxy.conf.json",
+    "start": "ng serve -proxy-config proxy.conf.json",
     "build": "npm run gen && ng build --prod",
     "test": "ng test",
     "lint": "ng lint",

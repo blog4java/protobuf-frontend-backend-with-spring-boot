@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from 'rxjs/Observable';
-import {IPeople, IPerson, Person} from "../protobufs";
+import {IPerson, Person} from "../protobufs";
 
 @Injectable()
 export class PersonService {
@@ -16,8 +16,8 @@ export class PersonService {
     return this.http.post(this.personUri, body);
   }
 
-  findAllPersonNames(): Observable<IPeople> {
-    return this.http.get<IPeople>(this.personUri);
+  findAllPersonNames(): Observable<any> {
+    return this.http.get(this.personUri);
   }
 
 }
