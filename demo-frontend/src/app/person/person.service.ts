@@ -12,7 +12,7 @@ export class PersonService {
   }
 
   addPerson(person: IPerson): Observable<Iterable<number>> {
-    let body = Person.encode(person).finish();
+    let body = Person.encodeDelimited(person).finish();
     return this.http.post<Iterable<number>>(this.personUri, body.buffer);
   }
 
