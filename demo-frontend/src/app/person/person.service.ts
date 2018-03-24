@@ -12,8 +12,11 @@ export class PersonService {
   }
 
   addPerson(person: IPerson): Observable<Iterable<number>> {
-    let body = Person.encodeDelimited(person).finish();
-    return this.http.post<Iterable<number>>(this.personUri, body.buffer);
+    let writer = Person.encode(person);
+    let params = Person.verify(writer);
+    let body = writer.finish().buffer;
+    console.log("body", body);
+    return this.http.post<Iterable<number>>(this.personUri, body);
   }
 
   findAllPersonNames(): Observable<Iterable<number>> {
