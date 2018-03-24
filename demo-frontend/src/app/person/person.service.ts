@@ -11,9 +11,9 @@ export class PersonService {
   constructor(private readonly http: HttpClient) {
   }
 
-  addPerson(person: IPerson) {
+  addPerson(person: IPerson): Observable<Iterable<number>> {
     let body = Person.encode(person).finish();
-    return this.http.post(this.personUri, body.buffer);
+    return this.http.post<Iterable<number>>(this.personUri, body.buffer);
   }
 
   findAllPersonNames(): Observable<Iterable<number>> {
