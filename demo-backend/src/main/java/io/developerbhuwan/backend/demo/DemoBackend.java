@@ -21,7 +21,6 @@ public class DemoBackend {
 
     private static final String APPLICATION_X_PROTOBUF_VALUE = "application/x-protobuf";
 
-
     public static void main(String[] args) {
         SpringApplication.run(DemoBackend.class, args);
     }
@@ -30,8 +29,8 @@ public class DemoBackend {
     @RestController
     @RequestMapping(
             path = "/api/persons",
-            produces = APPLICATION_X_PROTOBUF_VALUE,
-            consumes = APPLICATION_X_PROTOBUF_VALUE
+            produces = {APPLICATION_X_PROTOBUF_VALUE},
+            consumes = {APPLICATION_X_PROTOBUF_VALUE}
     )
     static class RestDemoEndPoints {
 
