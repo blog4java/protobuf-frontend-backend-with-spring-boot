@@ -2,7 +2,6 @@ package io.developerbhuwan.backend.demo;
 
 import io.developerbuwan.demo.model.DemoProtos.People;
 import io.developerbuwan.demo.model.DemoProtos.Person;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +10,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import static java.util.stream.Collectors.toList;
+import static org.springframework.boot.SpringApplication.run;
 
 /**
  * @author Bhuwan Prasad Upadhyay
@@ -22,7 +22,7 @@ public class DemoBackend {
     private static final String APPLICATION_X_PROTOBUF_VALUE = "application/x-protobuf";
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoBackend.class, args);
+        run(DemoBackend.class, args);
     }
 
 
