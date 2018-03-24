@@ -27,8 +27,8 @@ export class PersonComponent implements OnInit {
 
   private loadPersons() {
     this.personService.findAllPersonNames()
-      .subscribe(value => {
-        this.names = People.decode(new Uint8Array(value)).person;
+      .subscribe(buffer => {
+        this.names = People.decode(new Uint8Array(buffer)).person;
         console.log("names", this.names);
       });
   }

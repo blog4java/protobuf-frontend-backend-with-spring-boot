@@ -16,8 +16,8 @@ export class PersonService {
     return this.http.post(this.personUri, body.buffer);
   }
 
-  findAllPersonNames(): Observable<any> {
-    return this.http.get(this.personUri);
+  findAllPersonNames(): Observable<Iterable<number>> {
+    return this.http.get<Iterable<number>>(this.personUri);
   }
 
 }
