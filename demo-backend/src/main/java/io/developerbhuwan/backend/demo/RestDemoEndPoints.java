@@ -20,7 +20,6 @@ class RestDemoEndPoints {
     static final String APPLICATION_X_PROTOBUF_VALUE = "application/x-protobuf";
     private Map<String, DemoProtos.Person> persons = new LinkedHashMap<>();
 
-
     public RestDemoEndPoints() {
         persons.put(UUID.randomUUID().toString(), DemoProtos.Person.newBuilder()
                 .setFirstName("DEMO")
