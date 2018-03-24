@@ -12,12 +12,12 @@ export class PersonService {
   }
 
   addPerson(person: IPerson) {
-    let body = Person.create(person);
-    return this.http.post(this.personUri, body);
+    let body = Person.encode(person).finish();
+    return this.http.post(this.personUri, body.buffer);
   }
 
   findAllPersonNames(): Observable<any> {
-    return this.http.get(this.personUri, {responseType: 'arraybuffer'});
+    return this.http.get(this.personUri);
   }
 
 }

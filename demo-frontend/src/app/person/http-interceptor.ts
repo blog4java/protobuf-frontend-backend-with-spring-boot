@@ -16,7 +16,7 @@ export class NgHttpInterceptor implements HttpInterceptor {
 
   public intercept(req: HttpRequest<any>, next: HttpHandler):
     Observable<HttpResponse<any>> | Observable<HttpEvent<any>> {
-    req = req.clone({headers: req.headers.set('Content-Type', 'application/x-protobuf')});
+    req = req.clone({headers: req.headers.set('Content-Type', 'application/x-protobuf'), responseType: 'arraybuffer'});
     console.log('INTERCEPTING REQUEST >', req);
     return next.handle(req).catch((response) => {
       if (response instanceof HttpErrorResponse) {
