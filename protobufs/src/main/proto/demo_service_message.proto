@@ -8,7 +8,11 @@ message EventPayload {
     required double paidAmount = 3;
 }
 
-message PersonRequest {
+message People {
+    repeated Person person = 1;
+}
+
+message Person {
     required string firstName = 1;
     required string lastName = 2;
     optional string middleName = 3;

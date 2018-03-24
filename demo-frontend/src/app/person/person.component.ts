@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PersonService} from "./person.service";
-import {IPersonRequest} from "../protobufs";
+import {IPerson, People} from "../protobufs";
 
 @Component({
   selector: 'app-person',
@@ -9,7 +9,7 @@ import {IPersonRequest} from "../protobufs";
 })
 export class PersonComponent implements OnInit {
 
-  names: string[];
+  names: IPerson[];
   count: number;
 
   constructor(private personService: PersonService) {
@@ -29,11 +29,11 @@ export class PersonComponent implements OnInit {
     this.personService.findAllPersonNames()
       .subscribe(value => {
         console.log('persons ', value);
-        this.names = value
+        this.names = People.create(value).person
       });
   }
 
-  private person(): IPersonRequest {
+  private person(): IPerson {
     let number = this.count + 1;
     this.count = number;
     return {

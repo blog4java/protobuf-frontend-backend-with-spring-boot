@@ -20,24 +20,42 @@ export class EventPayload implements IEventPayload {
     public toJSON(): { [k: string]: any };
 }
 
-export interface IPersonRequest {
+export interface IPeople {
+    person?: (IPerson[]|null);
+}
+
+export class People implements IPeople {
+    constructor(properties?: IPeople);
+    public person: IPerson[];
+    public static create(properties?: IPeople): People;
+    public static encode(message: IPeople, writer?: $protobuf.Writer): $protobuf.Writer;
+    public static encodeDelimited(message: IPeople, writer?: $protobuf.Writer): $protobuf.Writer;
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): People;
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): People;
+    public static verify(message: { [k: string]: any }): (string|null);
+    public static fromObject(object: { [k: string]: any }): People;
+    public static toObject(message: People, options?: $protobuf.IConversionOptions): { [k: string]: any };
+    public toJSON(): { [k: string]: any };
+}
+
+export interface IPerson {
     firstName: string;
     lastName: string;
     middleName?: (string|null);
 }
 
-export class PersonRequest implements IPersonRequest {
-    constructor(properties?: IPersonRequest);
+export class Person implements IPerson {
+    constructor(properties?: IPerson);
     public firstName: string;
     public lastName: string;
     public middleName: string;
-    public static create(properties?: IPersonRequest): PersonRequest;
-    public static encode(message: IPersonRequest, writer?: $protobuf.Writer): $protobuf.Writer;
-    public static encodeDelimited(message: IPersonRequest, writer?: $protobuf.Writer): $protobuf.Writer;
-    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PersonRequest;
-    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PersonRequest;
+    public static create(properties?: IPerson): Person;
+    public static encode(message: IPerson, writer?: $protobuf.Writer): $protobuf.Writer;
+    public static encodeDelimited(message: IPerson, writer?: $protobuf.Writer): $protobuf.Writer;
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Person;
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Person;
     public static verify(message: { [k: string]: any }): (string|null);
-    public static fromObject(object: { [k: string]: any }): PersonRequest;
-    public static toObject(message: PersonRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+    public static fromObject(object: { [k: string]: any }): Person;
+    public static toObject(message: Person, options?: $protobuf.IConversionOptions): { [k: string]: any };
     public toJSON(): { [k: string]: any };
 }

@@ -1,6 +1,7 @@
 package io.developerbhuwan.backend.demo;
 
-import io.developerbuwan.demo.model.DemoProtos.PersonRequest;
+import io.developerbuwan.demo.model.DemoProtos.People;
+import io.developerbuwan.demo.model.DemoProtos.Person;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,7 +17,6 @@ import org.springframework.http.converter.protobuf.ProtobufHttpMessageConverter;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Objects;
-import java.util.stream.Stream;
 
 import static java.net.URI.create;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -53,25 +53,25 @@ class DemoBackendIntegrationTests {
     void findAllPersonNames_ThenReturnOkStatus() {
         String givenFirstName = "GANESH";
         addPerson(givenFirstName);
-        ResponseEntity<String> names = findPersons();
-        assertTrue(Stream.of(names.getBody()).anyMatch(n -> Objects.equals(n, givenFirstName)));
+        ResponseEntity<People> names = findPersons();
+        assertTrue(names.getBody().getPersonList().stream().anyMatch(n -> Objects.equals(n.getFirstName(), givenFirstName)));
     }
 
 
-    private ResponseEntity<String> findPersons() {
+    private ResponseEntity<People> findPersons() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(ProtobufHttpMessageConverter.PROTOBUF);
-        RequestEntity<PersonRequest> requestEntity =
+        RequestEntity<Person> requestEntity =
                 new RequestEntity<>(headers, GET, create(baseUri + "/api/persons"));
-        return rest.exchange(requestEntity, String.class);
+        return rest.exchange(requestEntity, People.class);
     }
 
     private ResponseEntity<String> addPerson(String firstName) {
         HttpHeaders headers = new HttpHeaders();
-        PersonRequest request = PersonRequest
+        Person request = Person
                 .newBuilder().setFirstName(firstName).setMiddleName("PRASAD").setLastName("UPADHYAY")
                 .build();
-        RequestEntity<PersonRequest> requestEntity =
+        RequestEntity<Person> requestEntity =
                 new RequestEntity<>(request, headers, POST, create(baseUri + "/api/persons"));
         return rest.exchange(requestEntity, String.class);
     }
