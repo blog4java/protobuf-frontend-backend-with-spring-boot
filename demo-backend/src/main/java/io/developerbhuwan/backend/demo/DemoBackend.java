@@ -37,9 +37,8 @@ public class DemoBackend {
         private Map<String, PersonRequest> persons = new LinkedHashMap<>();
 
         @PostMapping
-        public String addPerson(@RequestBody PersonRequest request) {
+        public void addPerson(@RequestBody PersonRequest request) {
             persons.put(UUID.randomUUID().toString(), request);
-            return "Ok";
         }
 
         @GetMapping
